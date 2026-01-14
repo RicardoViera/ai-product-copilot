@@ -8,6 +8,7 @@
     "css": "app/globals.css",
     "baseColor": "zinc",
     "cssVariables": true,
+    "darkMode": ["class"],
     "prefix": ""
   },
   "iconLibrary": "lucide",
