@@ -2,6 +2,8 @@ import { prisma } from "@/src/lib/db/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { NewProductForm } from "@/src/components/forms/new-product-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { generateDescription } from "@/src/actions/generate-description";
+import { Button } from "@/src/components/ui/button";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -32,12 +34,16 @@ export default async function DashboardPage() {
       <div className="grid gap-4">
         {dbUser?.products.map((product) => (
           <Card key={product.id}>
-            <CardHeader>
-              <CardTitle>{product.name}</CardTitle>
-            </CardHeader>
-            <CardContent className="text-muted-foreground">
-              {product.description || "No description yet."}
+            <CardContent className="space-y-3 text-muted-foreground">
+              <p>{product.description || "No description yet."}</p>
+
+              <form action={generateDescription.bind(null, product.id)}>
+                <Button type="submit" variant="secondary" size="sm">
+                  ✨ Generate with AI
+                </Button>
+              </form>
             </CardContent>
+
           </Card>
         ))}
       </div>
