@@ -23,11 +23,20 @@ model User {
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   name        String
   description String?
-  createdAt   DateTime @default(now())
+  ownerId     String
+  owner       User      @relation(fields: [ownerId], references: [id])
+  messages    Message[]
+  createdAt   DateTime  @default(now())
+}
 
-  ownerId String
-  owner   User   @relation(fields: [ownerId], references: [id])
+model Message {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id])
+  role       String   // 'user' or 'assistant'
+  content    String
+  createdAt  DateTime @default(now())
 }

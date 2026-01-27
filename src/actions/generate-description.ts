@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs/server";
 import { generateProductDescription } from "@/src/lib/ai/generate-description";
 import { revalidatePath } from "next/cache";
 
-export async function generateDescription(productId: string) {
+export async function generateDescription(productId?: string) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
