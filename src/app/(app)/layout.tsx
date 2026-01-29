@@ -1,20 +1,11 @@
 import { ReactNode } from "react";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { syncUser } from "@/src/lib/auth/sync-user";
+import { requireUserId } from "@/src/lib/auth/require-user";
+import { AppShell } from "@/src/components/layout/AppShell";
 
 export default async function AppLayout({ children }: { children: ReactNode }) {
-  const { userId } = await auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
+  await requireUserId();
   await syncUser();
 
-  return (
-    <div className="min-h-screen bg-background">
-      {children}
-    </div>
-  );
+  return <AppShell>{children}</AppShell>;
 }

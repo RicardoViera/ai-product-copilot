@@ -1,18 +1,11 @@
-"use client";
-
-import dynamic from "next/dynamic";
-
-const ChatClient = dynamic(() => import("./ChatClient"), { ssr: false });
+import type { UIMessage } from "ai";
+import ChatClient from "./ChatClient";
 
 type Props = {
-  messages: {
-    id: string;
-    role: "user" | "assistant";
-    content: string;
-  }[];
+  initialMessages: UIMessage[];
   productId: string;
 };
 
-export function ChatClientWrapper({ messages, productId }: Props) {
-  return <ChatClient messages={messages} productId={productId} />;
+export function ChatClientWrapper({ initialMessages, productId }: Props) {
+  return <ChatClient initialMessages={initialMessages} productId={productId} />;
 }

@@ -29,6 +29,8 @@ model Product {
   ownerId     String
   owner       User      @relation(fields: [ownerId], references: [id])
   messages    Message[]
+  docs        ProductDoc[]
+  docChunks   ProductDocChunk[]
   createdAt   DateTime  @default(now())
 }
 
@@ -40,3 +42,34 @@ model Message {
   content    String
   createdAt  DateTime @default(now())
 }
+
+model ProductDoc {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  title     String
+  content   String?  // extracted text (we'll fill from uploaded file)
+  filePath  String   // storage path in bucket
+  fileName  String
+  mimeType  String
+  chunks    ProductDocChunk[]
+  isIndexed Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+model ProductDocChunk {
+  id         String   @id @default(cuid())
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  docId      String
+  doc        ProductDoc @relation(fields: [docId], references: [id], onDelete: Cascade)
+
+  content    String
+  embedding  Unsupported("vector(1536)") // pgvector
+
+  createdAt  DateTime @default(now())
+}
+

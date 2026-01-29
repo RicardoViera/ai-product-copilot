@@ -1,18 +1,16 @@
-import { prisma } from "@/src/lib/db/prisma";
-import { auth } from "@clerk/nextjs/server";
 import { NewProductForm } from "@/src/components/forms/new-product-form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { generateDescription } from "@/src/actions/generate-description";
-import { Button } from "@/src/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/src/components/ui/card";
 import Link from "next/link";
+import { getMyProducts } from "@/src/lib/server/queries/products";
+import { Button } from "@/src/components/ui/button";
 
 export default async function DashboardPage() {
-  const { userId } = await auth();
-
-  const dbUser = await prisma.user.findUnique({
-    where: { clerkId: userId! },
-    include: { products: true },
-  });
+  const products = await getMyProducts();
 
   return (
     <div className="space-y-8">
@@ -33,24 +31,24 @@ export default async function DashboardPage() {
       </Card>
 
       <div className="grid gap-4">
-        {dbUser?.products.map((product) => (
-          <Link
-            key={product.id}
-            href={`/dashboard/${product.id}/chat`}
-            className="block"
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>{product.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">
-                {product.description || "No description yet."}
-              </CardContent>
-            </Card>
-          </Link>
+        {products.map((product) => (
+          <div className="flex flex-col gap-2 pt-3" key={product.id}>
+            <Link href={`/dashboard/${product.id}/chat`} className="block">
+              <Card>
+                <CardHeader>
+                  <CardTitle>{product.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-muted-foreground">
+                  {product.description || "No description yet."}
+                </CardContent>
+              </Card>
+            </Link>
+            <Button className="w-fit" asChild variant="outline" size="sm">
+              <Link href={`/dashboard/${product.id}/docs`}>{product.name} Documents</Link>
+            </Button>
+          </div>
         ))}
       </div>
-
     </div>
   );
 }

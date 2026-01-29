@@ -1,46 +1,37 @@
-import { notFound } from "next/navigation";
-import { prisma } from "@/src/lib/db/prisma";
-import { auth } from "@clerk/nextjs/server";
 import { ChatClientWrapper } from "@/src/components/chat/ChatClientWrapper";
+import { UIMessage } from "ai";
+import { getMyProductWithMessages } from "@/src/lib/server/queries/product";
+import Link from "next/link";
+import { Button } from "@/src/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 export default async function ChatPage({
-    params,
+  params,
 }: {
-    params: Promise<{ productId: string }>;
+  params: Promise<{ productId: string }>;
 }) {
-    const { userId } = await auth();
-    if (!userId) notFound();
+  const { productId } = await params;
 
-    // ✅ Await params
-    const { productId } = await params;
+  const product = await getMyProductWithMessages(productId);
 
-    if (!productId) notFound();
+  const messages: UIMessage[] = product.messages.map((m) => ({
+    id: m.id,
+    role: m.role as "user" | "assistant",
+    parts: [{ type: "text", text: m.content }],
+  }));
 
-    const product = await prisma.product.findUnique({
-        where: { id: productId },
-        include: {
-            owner: true,
-            messages: { orderBy: { createdAt: "asc" } },
-        },
-    });
+  return (
+    <div>
+      <div className="flex justify-between">
+      <h1 className="text-2xl font-bold mb-4">Chat about {product.name}</h1>
+      <Link className="underline" href={`/dashboard/${productId}/docs`}>
+          <Button variant="ghost" className="w-fit">
+            <ArrowLeft className="h-4 w-4" /> {product?.name}'s Documents
+          </Button>
+        </Link>
+      </div>
 
-    if (!product || product.owner.clerkId !== userId) {
-        notFound();
-    }
-
-    const messages = product.messages.map((msg) => ({
-        id: msg.id,
-        role: msg.role as "user" | "assistant",
-        content: msg.content,
-    }));
-
-    return (
-        <div>
-            <h1 className="text-2xl font-bold mb-4">
-                Chat about {product.name}
-            </h1>
-
-            <ChatClientWrapper messages={messages} productId={productId} />
-        </div>
-    );
+      <ChatClientWrapper initialMessages={messages} productId={productId} />
+    </div>
+  );
 }

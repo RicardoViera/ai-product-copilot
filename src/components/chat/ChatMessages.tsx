@@ -1,24 +1,26 @@
 "use client";
 
-import React from "react";
+import { UIMessage } from "ai";
 
-type Message = {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-};
-
-export function ChatMessages({ messages }: { messages: Message[] }) {
+export function ChatMessages({ messages }: { messages: UIMessage[] }) {
   return (
-    <div className="space-y-4 overflow-y-auto max-h-[400px] p-4 bg-white rounded-md shadow-sm">
-      {messages.map((msg) => (
-        <div
-          key={msg.id}
-          className={`p-3 rounded-md ${
-            msg.role === "user" ? "bg-blue-100 text-right" : "bg-gray-100"
-          }`}
-        >
-          <p>{msg.content}</p>
+    <div className="space-y-4">
+      {messages.map((m) => (
+            <div
+              key={m.id}
+              className={`max-w-[80%] rounded-lg p-3 ${
+                m.role === "user"
+                  ? "ml-auto bg-primary text-primary-foreground"
+                  : "bg-muted"
+              }`}
+            >
+              {m.parts.map((part, i) =>
+                part.type === "text" ? (
+                  <span key={i} className="whitespace-pre-wrap">
+                    {part.text}
+                  </span>
+                ) : null
+              )}
         </div>
       ))}
     </div>
