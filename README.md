@@ -99,57 +99,56 @@ Storage:
 Architecture Overview:
 RAG Flow
 
-1- User uploads document
+    1- User uploads document
 
-2- Server:
+    2- Server:
 
-    Extracts text
+        Extracts text
 
-    Splits into chunks
+        Splits into chunks
 
-    Generates embeddings
+        Generates embeddings
 
-    Stores in ProductDocChunk with vector column
+        Stores in ProductDocChunk with vector column
 
-3- User sends chat message
+    3- User sends chat message
 
-4- System:
+    4- System:
 
-    Embeds query
+        Embeds query
 
-    Runs similarity search (<-> operator)
+        Runs similarity search (<-> operator)
 
-    Filters by distance threshold
+        Filters by distance threshold
 
-    Builds context window
+        Builds context window
 
-    Streams AI response
+        Streams AI response
 
-5- Sources appended to message
+    5- Sources appended to message
 
+Setup:
+    1- Clone repo: 
+        git clone https://github.com/yourusername/ai-product-copilot.git
+    2- Install dependencies:
+        Move into root directory: cd ai-product-copilot
+        npm install
 
-Setup
-1- Clone repo: 
-    git clone https://github.com/yourusername/ai-product-copilot.git
-2- Install dependencies:
-    Move into root directory: cd ai-product-copilot
-    npm install
+    3- Environment variables
 
-3- Environment variables
+    Create .env:
 
-Create .env:
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+        CLERK_SECRET_KEY=
+        DATABASE_URL=
+        OPENAI_API_KEY=
+        SUPABASE_URL=
+        SUPABASE_SERVICE_ROLE_KEY=
 
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
-CLERK_SECRET_KEY=
-DATABASE_URL=
-OPENAI_API_KEY=
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-
-4- Run Prisma migrations:
+    4- Run Prisma migrations:
     npx prisma migrate deploy
 
-5- Start dev server
+    5- Start dev server
     npm run dev
 
 Why This Project?
