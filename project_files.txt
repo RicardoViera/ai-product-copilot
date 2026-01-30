@@ -1,0 +1,136 @@
+.
+├── .gitignore
+├── .vscode/
+│   └── settings.json
+├── README.md
+├── components.json
+├── eslint.config.mjs
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── prisma.config.ts
+├── prisma/
+│   ├── migrations/
+│   │   ├── 20260124000910_init/
+│   │   │   └── migration.sql
+│   │   ├── 20260126193640_add_messages/
+│   │   │   └── migration.sql
+│   │   ├── 20260127224146_add_product_docs/
+│   │   │   └── migration.sql
+│   │   ├── 20260127235341_product_docs_uploads/
+│   │   │   └── migration.sql
+│   │   ├── 20260128000544_enable_pgvector/
+│   │   │   └── migration.sql
+│   │   ├── 20260128185247_add_is_indexed/
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── public/
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── src/
+│   ├── actions/
+│   │   └── create-product.ts
+│   ├── app/
+│   │   ├── (app)/
+│   │   │   ├── dashboard/
+│   │   │   │   ├── [productId]/
+│   │   │   │   │   ├── chat/
+│   │   │   │   │   │   └── page.tsx
+│   │   │   │   │   └── docs/
+│   │   │   │   │       └── page.tsx
+│   │   │   │   └── page.tsx
+│   │   │   └── layout.tsx
+│   │   ├── (auth)/
+│   │   │   ├── sign-in/
+│   │   │   │   └── [[...sign-in]]/
+│   │   │   │       └── page.tsx
+│   │   │   ├── sign-up/
+│   │   │   │   └── [[...sign-up]]/
+│   │   │   │       └── page.tsx
+│   │   ├── (marketing)/
+│   │   │   └── page.tsx
+│   │   ├── api/
+│   │   │   ├── chat/
+│   │   │   │   └── route.ts
+│   │   │   └── docs/
+│   │   │       └── upload/
+│   │   │           └── route.ts
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   └── layout.tsx
+│   ├── components/
+│   │   ├── chat/
+│   │   │   ├── ChatClient.tsx
+│   │   │   ├── ChatClientWrapper.tsx
+│   │   │   └── ChatMessages.tsx
+│   │   ├── docs/
+│   │   │   └── UploadDocForm.tsx
+│   │   ├── forms/
+│   │   │   └── new-product-form.tsx
+│   │   ├── layout/
+│   │   │   └── AppShell.tsx
+│   │   └── ui/
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       ├── dialog.tsx
+│   │       ├── dropdown-menu.tsx
+│   │       ├── input.tsx
+│   │       ├── scroll-area.tsx
+│   │       ├── separator.tsx
+│   │       ├── sheet.tsx
+│   │       ├── sonner.tsx
+│   │       └── textarea.tsx
+│   ├── lib/
+│   │   ├── ai/
+│   │   │   ├── embed.ts
+│   │   │   ├── generate-description.ts
+│   │   │   └── index.ts
+│   │   ├── api/
+│   │   │   └── handle-api-error.ts
+│   │   ├── auth/
+│   │   │   ├── get-db-user.ts
+│   │   │   ├── index.ts
+│   │   │   ├── require-product-access.ts
+│   │   │   ├── require-user.ts
+│   │   │   └── sync-user.ts
+│   │   ├── db/
+│   │   │   ├── index.ts
+│   │   │   └── prisma.ts
+│   │   ├── server/
+│   │   │   └── queries/
+│   │   │       ├── product.ts
+│   │   │       └── products.ts
+│   │   ├── supabase/
+│   │   │   └── admin.ts
+│   │   ├── utils/
+│   │   │   ├── chunk.ts
+│   │   │   ├── index.ts
+│   │   │   └── takeChars.ts
+│   │   └── utils.ts
+│   ├── my-app/
+│   │   ├── .gitignore
+│   │   ├── README.md
+│   │   ├── app/
+│   │   │   ├── favicon.ico
+│   │   │   ├── globals.css
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx
+│   │   ├── eslint.config.mjs
+│   │   ├── next.config.ts
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── postcss.config.mjs
+│   │   ├── public/
+│   │   │   ├── file.svg
+│   │   │   ├── globe.svg
+│   │   │   ├── next.svg
+│   │   │   ├── vercel.svg
+│   │   │   └── window.svg
+│   │   └── tsconfig.json
+│   └── proxy.ts
+└── tsconfig.json
