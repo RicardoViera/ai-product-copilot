@@ -12,7 +12,7 @@ Authentication & Authorization:
 
 Product Management:
 
-Create and manage products
+    Create and manage products
 
 Each product has:
 
