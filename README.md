@@ -213,7 +213,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Author
 
 **Ricardo Viera**  
-Full-Stack Engineer focused on AI-powered applications and modern SaaS architecture.
+Full stack software developer with experience in building HIPAA compliant web  applications. Knowledgeable of the Model-View-Controller (MVC) architectural pattern. Created responsive and dynamic User Interface (UI) and Single Page  Applications (SPAs). Implemented server-side technologies, such as RESTful  web services and Oracle SQL Databases. Experience in both individual and  team-based environments following Agile-development methodology. Recently focused on AI-powered applications and modern SaaS architecture.
 
 - GitHub: https://github.com/RicardoViera  
 - LinkedIn: https://www.linkedin.com/in/ricardo-viera/ 
