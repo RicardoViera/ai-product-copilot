@@ -4,7 +4,6 @@ import { getMyProductWithMessages } from "@/src/lib/server/queries/product";
 import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { Message } from "@prisma/client";
 
 export default async function ChatPage({
   params,
@@ -15,7 +14,7 @@ export default async function ChatPage({
 
   const product = await getMyProductWithMessages(productId);
 
-  const messages: UIMessage[] = product.messages.map((m: Message) => ({
+  const messages: UIMessage[] = product.messages.map((m: any) => ({
     id: m.id,
     role: m.role as "user" | "assistant",
     parts: [{ type: "text", text: m.content }],
