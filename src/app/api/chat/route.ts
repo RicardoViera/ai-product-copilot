@@ -94,6 +94,7 @@ export async function POST(req: Request) {
     const systemPrompt = `
 You are an AI Product Copilot.
 
+You may reference ${docContext} for details on the project.
 You may use the provided product documentation sources below.
 If the provided documentation excerpts do not contain the answer, say: 
 "I don't see that in the provided docs" and then give best-effort guidance.

@@ -72,7 +72,7 @@ export default function ChatClient({ productId, initialMessages }: Props) {
   // Ensure we start at bottom on first render
   useEffect(() => {
     scrollToBottom(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, []);
 
   return (
