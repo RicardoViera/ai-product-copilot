@@ -1,3 +1,4 @@
+import "server-only";
 import { streamText, convertToModelMessages, type UIMessage } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { OpenAI } from "openai";
