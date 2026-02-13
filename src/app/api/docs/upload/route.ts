@@ -1,3 +1,4 @@
+import "server-only";
 import { prisma } from "@/src/lib/db/prisma";
 import { supabaseAdmin } from "@/src/lib/supabase/admin";
 import { chunkText } from "@/src/lib/utils/chunk";
