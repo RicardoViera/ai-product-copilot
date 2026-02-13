@@ -46,7 +46,7 @@ export default async function DocsPage({
       </Card>
 
       <div className="grid gap-4">
-        {product?.docs.map((doc) => (
+        {product?.docs.map((doc: any) => (
           <Card key={doc.id}>
             <CardHeader>
               <CardTitle className="text-base">{doc.title}</CardTitle>

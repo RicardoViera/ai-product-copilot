@@ -31,7 +31,7 @@ export default async function DashboardPage() {
       </Card>
 
       <div className="grid gap-4">
-        {products.map((product) => (
+        {products.map((product: any) => (
           <div className="flex flex-col gap-2 pt-3" key={product.id}>
             <Link href={`/dashboard/${product.id}/chat`} className="block">
               <Card>
