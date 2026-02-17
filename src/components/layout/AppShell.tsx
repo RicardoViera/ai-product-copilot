@@ -15,13 +15,7 @@ function NavLinks({ onNavigate }: { onNavigate?: () => void }) {
       <Link className={linkClass} href="/dashboard" onClick={onNavigate}>
         Dashboard
       </Link>
-      <Link
-        className={linkClass}
-        href="/dashboard/new"
-        onClick={onNavigate}
-      >
-        New Product
-      </Link>
+     
     </nav>
   );
 }
